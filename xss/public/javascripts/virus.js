@@ -1,5 +1,7 @@
 
-      let normal = true
+      let normal = false
+
+      function start(){
         setInterval(() => {
           const body = document.body
           if(normal) {
@@ -12,3 +14,7 @@
           }
           normal = !normal
         }, 1000)
+      }
+        document.addEventListener('load', start)
+
+        document.write('VIRUS VIRUS VIRUS VIRUS VIRUS')
