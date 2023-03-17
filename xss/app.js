@@ -9,6 +9,8 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var commentsRouter = require('./routes/comments');
 
+const expressSanitizer = require('express-sanitizer')
+
 var app = express();
 
 // view engine setup
@@ -17,6 +19,7 @@ app.set('view engine', 'twig');
 
 app.use(logger('dev'));
 app.use(express.json());
+app.use(expressSanitizer())
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
