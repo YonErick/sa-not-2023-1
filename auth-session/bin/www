@@ -5,7 +5,7 @@
  */
 
 var app = require('../app');
-var debug = require('debug')('sql-injection:server');
+var debug = require('debug')('auth-session:server');
 var http = require('http');
 
 /**

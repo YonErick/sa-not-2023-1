@@ -3,17 +3,19 @@ const conn = require('../config/database')
 const controller = {}
 
 controller.create = async (req, res) => {
-    try{
-        await conn.query(`
-        insert into comments (comment)
-        values ($1)
-        `, [req.sanitize(req.body.comment)])
+  try {
+    // Salva o comentário no BD
+    await conn.query(`
+      insert into comments (comment)
+      values ($1)
+    `, [req.sanitize(req.body.comment)])
 
-        res.redirect('/')
-    }
-    catch(error){
-        console.error(error)
-    }
+    // Redireciona de volta para o formulário
+    res.redirect('/')
+  }
+  catch(error) {
+    console.error(error)
+  }
 }
 
 module.exports = controller
