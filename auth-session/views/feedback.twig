@@ -1,0 +1,47 @@
+{% extends 'layout.twig' %}
+
+{% if severity == 'success' %}
+  <style>
+    .msg{
+      border: 1px, solid green;
+      background-color: lightgreen;
+      border-radius: 8px;
+      padding: 8px;
+    }
+  </style>
+{% endif %}
+
+{% if level == 'error' %}
+  <style>
+    .msg{
+      border: 1px, solid red;
+      background-color: mistyrose;
+      border-radius: 8px;
+      padding: 8px;
+    }
+  </style>
+{% else %}
+  <style>
+    .msg{
+      border: 1px, solid navy;
+      background-color: powderblue;
+      border-radius: 8px;
+      padding: 8px;
+    }
+  </style>
+{%endif%}
+
+{% block body %}
+
+  <div class="msg">
+    <h1>
+      {% if level == 'success' %}
+      Operação bem sucedida
+      {% elseif == 'error' %}
+      Erro
+      {% endif %}
+    </h1>
+    <span> {{message}} </span>
+  </div>
+
+{% endblock %}

@@ -31,6 +31,13 @@ app.use(expressSession({
   }
 }))
 
+if(app.get('env') == 'production') {
+  app.set('trust proxy', 1)
+  sessionConfig.cookie.secure = true
+}
+
+app.use(expressSession(sessionConfig))
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'twig');
