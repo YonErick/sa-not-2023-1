@@ -1,47 +1,67 @@
 {% extends 'layout.twig' %}
 
-{% if severity == 'success' %}
-  <style>
-    .msg{
-      border: 1px, solid green;
-      background-color: lightgreen;
-      border-radius: 8px;
-      padding: 8px;
-    }
-  </style>
-{% endif %}
-
-{% if level == 'error' %}
-  <style>
-    .msg{
-      border: 1px, solid red;
-      background-color: mistyrose;
-      border-radius: 8px;
-      padding: 8px;
-    }
-  </style>
-{% else %}
-  <style>
-    .msg{
-      border: 1px, solid navy;
-      background-color: powderblue;
-      border-radius: 8px;
-      padding: 8px;
-    }
-  </style>
-{%endif%}
-
 {% block body %}
+
+  {% if level == 'success' %}
+    <style>
+      .msg {
+        border: 1px solid green;
+        background-color:lightgreen;
+        border-radius: 8px;
+        padding: 8px;
+      }
+    </style>
+  {% elseif level == 'error' %}
+    <style>
+      .msg {
+        border: 1px solid red;
+        background-color:mistyrose;
+        border-radius: 8px;
+        padding: 8px;
+      }
+    </style>
+  {% else %}
+    <style>
+      .msg {
+        border: 1px solid navy;
+        background-color:powderblue;
+        border-radius: 8px;
+        padding: 8px;
+      }
+    </style>
+  {% endif %}
 
   <div class="msg">
     <h1>
       {% if level == 'success' %}
-      Operação bem sucedida
+        Operação bem sucedida
       {% elseif == 'error' %}
-      Erro
+        Erro
+      {% else %}
+        Informação
       {% endif %}
     </h1>
     <span> {{message}} </span>
   </div>
 
+    <div id="display-cookies" style="visibility: hidden;">
+      <h2> Cookies da Página</h2>
+      <pre> {{Cookies}} </pre>
+    </div>
+
+    <script>
+      const displayCookies = document.getElementById('display-cookies')
+      const docCookie = document.cookie 
+      if(docCookie) {
+        displayCookies.style.visibility = 'visible'
+        const cookies = document.getElementById('cookies')
+        cookies.textContent = docCookie
+      }
+    </script>
+
+  {%  if redirectUrl %}
+  <script>
+    setTimeout(() => window.location.href = '{{redirectUrl}}', 3000)
+  </script>
+  {% endif %}
 {% endblock %}
